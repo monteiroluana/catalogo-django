@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row">
+
+    {% for artista in artistas %}
+    <!-- Card -->
+    <div class="col-4">
+        <div class="card mb-4 " style="width: 18rem;">
+            <img src="{{artista.img_url}}" class="card-img-top" alt="..." height="200">
+
+            <div class="card-body">
+                <p align="justify" style="font-size: small"> 
+                    <strong>{{artista.nome}}</strong> 
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <a href="#" class="btn btn-sm btn-outline-secondary">Delete</a>
+                        <a href='{% url "more" artista_id=artista.id %}' class="btn btn-sm btn-outline-secondary"> More</a>
+                    </div>
+                    <small class="text-muted">Age {{artista.idade}} | {{artista.id}}</small>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End Card -->
+
+    {% endfor %}
+</div>
+
+
+{% endblock %}
