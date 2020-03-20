@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/more.css'%}">
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-warning btn-add" data-toggle="modal" data-target="#exampleModal">
+    Novo disco
+</button>
+
+
+<div class="row">
+    {% for disco in discos %}
+    <div class="col-md-3 disco" align="center">
+        <a href="#_{{disco.id}}" data-toggle="collapse" onclick="play('{{disco.url_play}}')"><img
+                src="{{disco.img_url}}" class="rounded-circle img-responsive" width="200" alt="{{disco.titulo}}"></a>
+
+        <div id="_{{disco.id}}" class="collapse">
+            <br>
+            <p>
+                <strong>{{disco.titulo}}</strong><br>
+                Artista: {{disco.artista.nome}}<br>
+                Lançamento: {{disco.lancamento}}<br>
+                <a href="{% url 'delete_disc' artista_id=disco.artista.id disc_id=disco.id %}"><i class="fas fa-trash float-right"></i></a>
+            </p>
+
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Adicionar novo disco</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ discoForm|crispy }}
+                    <input class="btn btn-info btn-sm" type="submit" value="Adicionar">
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="player" style="display:none;"></div>
+
+<!-- 2. This code loads the iFrame Player API code asynchronously.-->
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script src="{% static 'js/more.js' %}"></script>
+
+{% endblock %}

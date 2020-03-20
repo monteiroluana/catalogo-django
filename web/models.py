@@ -18,6 +18,8 @@ class Disco(models.Model):
     artista = models.ForeignKey(Artista, on_delete=models.CASCADE)
     titulo = models.TextField()
     url_play = models.TextField(db_column='youtube_url')
+    lancamento = models.TextField()
+    img_url = models.TextField()
 
     class Meta:
         db_table = 'disco'

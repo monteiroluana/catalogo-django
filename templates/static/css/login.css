@@ -1,0 +1,42 @@
+body{
+    background:url(/templates/static/img/wallpaper.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+/*-----------------------------
+
+------------------------------*/
+.row{ height: 100%; }
+
+.box{
+    width: 50em;
+    height: 20em;
+    box-shadow:0.5em 0.5em 0.5em 0.5em rgba(0,0,0,0.5);
+}
+
+.rigth{  border-left: 1px solid rgba(112, 112, 112, 0.5); }
+
+.login{
+    text-transform:uppercase;letter-spacing:0.20em;font-size:1em; 
+    padding-top: 1em;
+    /* color: #3ea7d1 !important; */
+}
+
+.login-form{padding: 1.8em 5em 0.5em 5em;}
+
+button{
+    color:rgba(0,0,0,0.5)
+}
+
+button:hover{
+    color:#000;
+}
+
+
+
+.box-register{
+    width: 30em;
+    height: 25em;
+    box-shadow:0.5em 0.5em 0.5em 0.5em rgba(0,0,0,0.5);
+}
+

@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/index.css'%}">
+
+ <!-- Button trigger modal -->
+ <button type="button" class="btn btn-warning btn-add" data-toggle="modal" data-target="#exampleModal">
+    Novo artista
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Adicionar novo disco</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form method="POST">
+                    {% csrf_token %}
+                    <form method="POST"> {% csrf_token %}
+                        <div class="form-group">
+                            <label>Nome artistico</label>
+                            <input type="text" class="form-control" name="{{ artistaForm.nome.name }}" >
+                        </div>
+
+                        <div class="form-group">
+                            <label>Data nascimento</label>
+                            <input type="date" class="form-control" name="{{ artistaForm.nasc.name }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Foto url</label>
+                            <input type="text" class="form-control" name="{{ artistaForm.img_url.name }}">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Adicionar</button>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    {% for artista in artistas %}
+    <!-- Card -->
+    <div class="col-4">
+        <div class="card mb-4">
+            <img src="{{artista.img_url}}" class="card-img-top" alt="{{artista.nome}}" , title="{{artista.nome}}">
+
+            <div class="card-body">
+                <p align="justify" style="font-size: small">
+                    <strong>{{artista.nome}}</strong>
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <a href="#" class="btn btn-sm btn-outline-secondary" data-toggle="modal"
+                            data-target="#_{{artista.id}}">Editar</a>
+                        <a href='{% url "details" artista_id=artista.id %}' class="btn btn-sm btn-outline-secondary">
+                            Detalhes</a>
+                    </div>
+                    <small class="text-muted">Idade {{artista.idade}}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Card -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="_{{artista.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{artista.nome}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <form method="POST"> {% csrf_token %}
+                        <input type="hidden" class="form-control" name="{{ artistaForm.nome.name }}"
+                            value="{{ artista.nome }}">
+
+                        <div class="form-group">
+                            <label>Data nascimento</label>
+                            <input type="date" class="form-control" name="{{ artistaForm.nasc.name }}"
+                                value='{{ artista.nasc|date:"Y-m-d"}}'>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Foto url</label>
+                            <input type="text" class="form-control" name="{{ artistaForm.img_url.name }}"
+                                value="{{ artista.img_url }}">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Atualizar</button>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/login.css'%}">
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+<body>
+  <div class="row justify-content-md-center align-items-center">
+    <div class="box">
+      <div class="row align-items-center">
+        <div class="col-6 left align-self-center">
+
+          <center><a href="{% url 'new_register' %}" class="btn btn-warning">Registre-se</a></center>
+
+        </div>
+
+        <div class="col-6 rigth">
+          {% if form.errors %}
+          <div class="alert alert-danger" role="alert">
+            Please try again.
+          </div>
+          {% endif %}
+
+
+          <div class="login text-center">Login</div>
+
+          <form class="login-form" method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Username" name="{{ form.username.name }}">
+            </div>
+
+            <div class="form-group">
+              <input type="password" class="form-control" placeholder="Password" name="{{ form.password.name }}">
+            </div>
+
+
+            <div class="form-check">
+              <button type="submit" class="btn btn-login float-right">Sing-in</button>
+              <input type="hidden" name="next" value="{{ next }}">
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>

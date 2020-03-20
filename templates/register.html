@@ -1,0 +1,50 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<link rel="stylesheet" href="{% static 'css/login.css'%}">
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+<body>
+  <div class="row justify-content-md-center align-items-center">
+    <div class="box-register">
+      <div class="row justify-content-md-center align-items-center">
+        
+        <div class="col-10">
+          <form method="post">
+              {% csrf_token %}
+
+
+              <div class="form-row">
+                <div class="form-group col-md-6 mb-0">
+                  {{ userForm.firstname|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-6 mb-0">
+                  {{ userForm.lastname|as_crispy_field }}
+                </div>
+              </div>
+              {{ userForm.email|as_crispy_field }}
+
+              <div class="form-row">
+                <div class="form-group col-md-6 mb-0">
+                  {{ userForm.username|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-6 mb-0">
+                  {{ userForm.password|as_crispy_field }}
+                </div>
+              </div>
+              
+              <a type="submit" href="{% url 'out' %}" class="btn btn-warning ">Voltar</a>
+              <button type="submit" class="btn btn-primary float-right">Registrar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>

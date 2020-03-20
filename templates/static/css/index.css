@@ -1,0 +1,15 @@
+
+/*----------------------------------------- 
+    INDEX
+-----------------------------------------*/
+.card-img, .card-img-bottom, .card-img-top {
+    filter: grayscale(1);
+    height:200px;
+}
+
+.card{width: 18rem !important}
+
+
+#btn-adiciona{
+    margin:1em;
+}
