@@ -9,7 +9,7 @@ class Artista(models.Model):
     
     class Meta:
         db_table = 'artista'
-        managed = False
+    #     managed = False
 
     def idade(self):
         return datetime.date.today().year - self.nasc.year
@@ -23,4 +23,4 @@ class Disco(models.Model):
 
     class Meta:
         db_table = 'disco'
-        managed = False
+    #     managed = False

@@ -10,7 +10,7 @@ $ pipenv shell
 $ pipenv sync --dev
 ```
 
-### settings.ini
+### c.ini
 ```ini
 [settings]
 DB_HOST = 127.0.0.1
@@ -21,14 +21,14 @@ DB_OPTIONS = -c search_path = database_scheme
 
 ```
 
-### database
-Execute o arquivo .sql para ter as tabelas corretas no seu database
-
 ### run
 ```shell
 $ python manage.py migrate
 $ python manage.py runserver
 ```
+
+### database
+Execute o arquivo .sql para ter alguns dados nas tabelas
 
 
 

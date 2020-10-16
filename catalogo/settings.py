@@ -80,6 +80,10 @@ WSGI_APPLICATION = 'catalogo.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'sqlite3.db',    
+    },
+    'postgresql': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'HOST': config('DB_HOST'),
         'PORT': config('DB_PORT', cast=int),

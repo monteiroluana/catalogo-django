@@ -1,7 +1,9 @@
 body{
-    background:url(/templates/static/img/wallpaper.jpg);
+    background:url(../img/wallpaper.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    margin:0;
+    padding: 0;
   }
 /*-----------------------------
 
